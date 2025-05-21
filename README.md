@@ -1,40 +1,34 @@
-# rick-morty-explorer
+# Rick & Morty Explorer
 
-This template should help get you started developing with Vue 3 in Vite.
+## Resumen del proyecto
 
-## Recommended IDE Setup
+Rick & Morty Explorer es una aplicación SPA desarrollada con Vue 3 que consume la API pública de Rick & Morty para mostrar información detallada de personajes de la serie. La aplicación está diseñada con un enfoque modular, utilizando la Composition API y Pinia para el manejo eficiente del estado global, con un sistema avanzado para el manejo de estados de carga, errores y notificaciones al usuario.
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+---
 
-## Type Support for `.vue` Imports in TS
+## Tecnologías y herramientas usadas
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
+| Tecnología         | Versión           | Propósito                                       |
+|--------------------|-------------------|------------------------------------------------|
+| Vue 3              | ^3.5.13           | Framework frontend reactivo y modular           |
+| Pinia              | ^3.0.1            | Estado global reactivo, reemplazo de Vuex       |
+| Vue Router         | ^4.5.0            | Manejo de rutas SPA                              |
+| Tailwind CSS       | ^4.1.7            | Framework CSS para estilos utilitarios rápidos  |
+| Vue Toastification | ^2.0.0-rc.5       | Sistema de notificaciones                        |
+| Vite               | ^6.3.5            | Bundler y dev server rápido                       |
+| Vitest             | ^3.1.4            | Framework de testing unitario e integración     |
+| TypeScript         | ~5.8.0            | Tipado estático para mayor robustez              |
 
-## Customize configuration
+---
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+## Instalación, ejecución y pruebas
 
-## Project Setup
+Clona el repositorio, instala dependencias, ejecuta la aplicación y corre las pruebas con estos comandos:
 
-```sh
+```bash
+git clone <URL-DE-TU-REPO>
+cd rick-and-morty-explorer
 npm install
-```
+npm run dev           # Levanta el servidor de desarrollo
+npm run test          # Ejecuta tests unitarios e integración
 
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Type-Check, Compile and Minify for Production
-
-```sh
-npm run build
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
-# rick-morty-explorer
