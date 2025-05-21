@@ -2,7 +2,7 @@
   <div class="p-4 max-h-screen flex flex-col">
     <h1 class="text-3xl font-bold mb-4 flex-shrink-0">Rick and Morty Characters</h1>
 
-    <LoadingSpinner v-if="loading" />
+  <LoadingSpinner v-if="loading" data-test="spinner" />
 
     <p v-if="!loading && error" class="text-red-600 mb-4">{{ error }}</p>
 
@@ -10,12 +10,13 @@
       v-if="!loading && !error"
       class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 overflow-y-auto flex-grow"
     >
-      <CharacterCard
-        v-for="char in characters"
-        :key="char.id"
-        :character="char"
-        :currentPage="page"
-      />
+    <CharacterCard
+      v-for="char in characters"
+      :key="char.id"
+      :character="char"
+      :currentPage="page"
+      data-test="character-card"
+    />
     </div>
 
     <div
