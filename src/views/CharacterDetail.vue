@@ -1,48 +1,62 @@
 <template>
-    <div class="p-4 max-w-xl mx-auto">
-        <button @click="goBack" class="mb-4 text-blue-500 hover:underline">&larr; Back</button>
+  <div class="p-4 max-w-6xl mx-auto">
+    <button
+      @click="goBack"
+      class="flex items-center mb-4 text-blue-600 hover:text-blue-800 transition"
+    >
+      <span class="material-icons mr-1">arrow_back</span> Volver
+    </button>
 
-        <LoadingSpinner v-if="loading" />
-        <p v-if="error" class="text-red-500">Error: {{ error }}</p>
+    <div v-if="character" class="bg-white shadow-lg rounded-lg p-6 flex flex-col lg:flex-row gap-6">
+      <img
+        :src="character.image"
+        :alt="character.name"
+        class="w-full lg:w-1/3 h-auto object-cover rounded-md shadow-md transition transform hover:scale-105"
+      />
 
-        <div v-if="character" class="bg-white rounded-lg shadow p-6">
-            <img
-                :src="character.image"
-                :alt="character.name"
-                class="w-full h-64 object-cover rounded-md mb-4"
-            />
-            <h1 class="text-2xl font-bold mb-2">{{ character.name }}</h1>
-            <p><strong>Status:</strong> {{ character.status }}</p>
-            <p><strong>Species:</strong> {{ character.species }}</p>
-            <p><strong>Gender:</strong> {{ character.gender }}</p>
-            <p><strong>Origin:</strong> {{ character.origin.name }}</p>
-            <p><strong>Location:</strong> {{ character.location.name }}</p>
-            <p><strong>Episodes:</strong> {{ character.episode.length }}</p>
-        </div>
+      <div class="flex-1 space-y-4">
+        <h2 class="text-3xl font-bold">{{ character.name }}</h2>
+        <p><strong>Especie:</strong> {{ character.species }}</p>
+        <p><strong>Estado:</strong> {{ character.status }}</p>
+        <p><strong>Género:</strong> {{ character.gender }}</p>
+        <p><strong>Origen:</strong> {{ character.origin.name }}</p>
+        <p><strong>Ubicación:</strong> {{ character.location.name }}</p>
+      </div>
     </div>
+
+    <p v-else class="text-gray-500">No se encontró información del personaje.</p>
+  </div>
 </template>
 
 <script lang="ts" setup>
-import { onMounted } from 'vue'
-import { useRouter, useRoute } from 'vue-router'
-import { useCharactersStore } from '../store/characters'
-import LoadingSpinner from '../components/LoadingSpinner.vue'
+  import { onMounted, computed } from 'vue'
+  import { useRoute, useRouter } from 'vue-router'
+  import { useCharactersStore } from '../stores/characters'
 
-const route = useRoute()
-const router = useRouter()
-const store = useCharactersStore()
+  const store = useCharactersStore()
+  const route = useRoute()
+  const router = useRouter()
 
-const id = Number(route.params.id)
+  onMounted(() => {
+    const id = parseInt(route.params.id as string, 10)
+    store.loadCharacter(id)
+  })
 
-function goBack() {
-  router.back()
-}
+  const character = computed(() => store.selected)
 
-onMounted(() => {
-  store.loadCharacter(id)
-})
-
-const character = store.selected
-const loading = store.loading
-const error = store.error
+  function goBack() {
+    if (route.query.page) {
+      router.push({ path: '/', query: { page: route.query.page.toString() } })
+    } else {
+      router.push({ path: '/' })
+    }
+  }
 </script>
+
+<style scoped>
+  .material-icons {
+    font-family: 'Material Icons';
+    font-size: 20px;
+    line-height: 1;
+  }
+</style>
