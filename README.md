@@ -71,8 +71,10 @@ git clone https://github.com/sebasam/rick-morty-explorer.git
 cd rick-morty-explorer
 npm install
 npm run dev
+```
 
 ## Este proyecto usa Vitest + @vue/test-utils para pruebas unitarias.
 
 ```bash
 npm run test
+```
