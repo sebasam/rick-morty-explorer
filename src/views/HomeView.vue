@@ -4,8 +4,6 @@
 
     <LoadingSpinner v-if="loading" />
 
-    <p v-if="error" class="text-red-500 flex-shrink-0">Error: {{ error }}</p>
-
     <div
       v-if="!loading && !error"
       class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 overflow-y-auto flex-grow"
@@ -45,14 +43,15 @@
   </div>
 </template>
 
-
 <script lang="ts" setup>
   import { ref, watch, onMounted, computed } from 'vue'
   import { useRoute, useRouter } from 'vue-router'
   import { useCharactersStore } from '../stores/characters'
   import LoadingSpinner from '../components/LoadingSpinner.vue'
   import CharacterCard from '../components/CharacterCard.vue'
+  import { useToast } from 'vue-toastification'
 
+  const toast = useToast()
   const store = useCharactersStore()
   const route = useRoute()
   const router = useRouter()
@@ -75,6 +74,18 @@
   const loading = computed(() => store.loading)
   const error = computed(() => store.error)
   const totalPages = computed(() => store.totalPages)
+
+  watch(error, (err) => {
+    if (err) {
+      toast.error(`Error: ${err}`, {
+        timeout: 4000,
+        closeOnClick: true,
+        pauseOnFocusLoss: true,
+        pauseOnHover: true,
+        draggable: true,
+      })
+    }
+  })
 
   function changePage(newPage: number) {
     router.push({ path: '/', query: { page: newPage.toString() } })
