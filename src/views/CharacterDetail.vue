@@ -29,10 +29,12 @@
 </template>
 
 <script lang="ts" setup>
-  import { onMounted, computed } from 'vue'
+  import { onMounted, computed, watch } from 'vue'
   import { useRoute, useRouter } from 'vue-router'
   import { useCharactersStore } from '../stores/characters'
+  import { useToast } from 'vue-toastification'
 
+  const toast = useToast()
   const store = useCharactersStore()
   const route = useRoute()
   const router = useRouter()
@@ -43,6 +45,18 @@
   })
 
   const character = computed(() => store.selected)
+  const error = computed(() => store.error)
+
+  watch(error, (err) => {
+    if (err) {
+      toast.error(`Error: ${err}`, {
+        timeout: 4000,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      })
+    }
+  })
 
   function goBack() {
     if (route.query.page) {
