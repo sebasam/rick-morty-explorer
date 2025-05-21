@@ -145,4 +145,33 @@ describe('CharacterDetail.vue', () => {
 
         expect(pushMock).toHaveBeenCalledWith({ path: '/', query: { page: '2' } })
     })
+
+    it('muestra un mensaje de error si ocurre un error al cargar el personaje', () => {
+        const pinia = createTestingPinia({
+            createSpy: vi.fn,
+            initialState: {
+                characters: {
+                    selected: null,
+                    error: 'Error al obtener el personaje',
+                },
+            },
+        })
+    
+        ;(useRoute as any).mockReturnValue({
+            params: { id: '1' },
+            query: {},
+        })
+    
+        ;(useRouter as any).mockReturnValue({
+            push: vi.fn(),
+        })
+    
+        const wrapper = shallowMount(CharacterDetail, {
+            global: {
+                plugins: [pinia],
+            },
+        })
+    
+        expect(wrapper.text()).toContain('Error al obtener el personaje')
+    })
 })
