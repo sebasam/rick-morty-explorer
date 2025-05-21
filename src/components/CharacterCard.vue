@@ -1,6 +1,9 @@
 <template>
   <router-link
-    :to="`/character/${character.id}`"
+    :to="{
+      path: `/character/${character.id}`,
+      query: { page: currentPage?.toString() }
+    }"
     class="block bg-white rounded-lg shadow p-4 hover:shadow-lg transition"
   >
     <img
@@ -14,10 +17,12 @@
 </template>
 
 <script lang="ts" setup>
-import type { Character } from '../types/character'
+  import type { Character } from '../types/character'
 
-interface Props {
-  character: Character
-}
-const props = defineProps<Props>()
+  interface Props {
+    character: Character
+    currentPage?: number
+  }
+
+  const props = defineProps<Props>()
 </script>
