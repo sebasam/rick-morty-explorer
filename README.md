@@ -1,34 +1,74 @@
 # Rick & Morty Explorer
 
-## Resumen del proyecto
-
-Rick & Morty Explorer es una aplicación SPA desarrollada con Vue 3 que consume la API pública de Rick & Morty para mostrar información detallada de personajes de la serie. La aplicación está diseñada con un enfoque modular, utilizando la Composition API y Pinia para el manejo eficiente del estado global, con un sistema avanzado para el manejo de estados de carga, errores y notificaciones al usuario.
+Rick & Morty Explorer es una aplicación frontend construida con **Vue 3**, **TypeScript**, **Pinia** y **Tailwind CSS**, que consume la [API pública de Rick and Morty](https://rickandmortyapi.com/) para visualizar personajes y detalles de la serie. La app está diseñada con enfoque en buenas prácticas de arquitectura, mantenibilidad y experiencia de usuario.
 
 ---
 
-## Tecnologías y herramientas usadas
+## 🎯 Objetivo
 
-| Tecnología         | Versión           | Propósito                                       |
-|--------------------|-------------------|------------------------------------------------|
-| Vue 3              | ^3.5.13           | Framework frontend reactivo y modular           |
-| Pinia              | ^3.0.1            | Estado global reactivo, reemplazo de Vuex       |
-| Vue Router         | ^4.5.0            | Manejo de rutas SPA                              |
-| Tailwind CSS       | ^4.1.7            | Framework CSS para estilos utilitarios rápidos  |
-| Vue Toastification | ^2.0.0-rc.5       | Sistema de notificaciones                        |
-| Vite               | ^6.3.5            | Bundler y dev server rápido                       |
-| Vitest             | ^3.1.4            | Framework de testing unitario e integración     |
-| TypeScript         | ~5.8.0            | Tipado estático para mayor robustez              |
+Explorar personajes del universo de Rick & Morty con una experiencia fluida, responsive y moderna:
+
+- Visualizar lista de personajes
+- Ver información detallada de cada personaje
+- Notificaciones en tiempo real para errores o acciones
+- Código limpio, tipado y con separación de responsabilidades
 
 ---
 
-## Instalación, ejecución y pruebas
+## 🚀 Tecnologías usadas
 
-Clona el repositorio, instala dependencias, ejecuta la aplicación y corre las pruebas con estos comandos:
+| Herramienta        | Uso principal                          |
+|--------------------|----------------------------------------|
+| Vue 3              | Framework SPA con Composition API      |
+| TypeScript         | Tipado estático                        |
+| Pinia              | Manejo de estado global reactivo       |
+| Vue Router         | Enrutamiento SPA                       |
+| Tailwind CSS       | Estilización rápida y responsiva       |
+| Vue Toastification | Notificaciones y alertas al usuario    |
+| Vite               | Bundler rápido y moderno               |
+| ESLint + Prettier  | Calidad de código y formateo           |
+
+---
+
+## 📂 Estructura del proyecto
+
+src/
+├── components/
+│ ├── CharacterCard.vue # Tarjeta individual de personaje
+│ └── CharacterDetail.vue # Vista detallada del personaje
+├── views/
+│ └── HomeView.vue # Vista principal (lista personajes)
+├── router/
+│ └── index.ts # Rutas SPA
+├── stores/
+│ └── characters.ts # Pinia Store (API y estados)
+├── App.vue # Componente raíz
+└── main.ts # Configuración principal
+
+
+---
+
+## 🧠 Decisiones técnicas
+
+- **Pinia** fue elegido por su simplicidad y compatibilidad nativa con Vue 3.
+- **Composition API** para mayor organización y reutilización de lógica.
+- **Tailwind CSS** permite escalar estilos sin conflictos.
+- **Toastification** mejora la experiencia UX con mensajes claros.
+- **Arquitectura modular** separa vistas, componentes, estado y rutas.
+
+---
+
+## ⚙️ Instalación y ejecución
+
+1. Clona el repositorio:
 
 ```bash
-git clone <URL-DE-TU-REPO>
-cd rick-and-morty-explorer
+git clone https://github.com/sebasam/rick-morty-explorer.git
+cd rick-morty-explorer
 npm install
-npm run dev           # Levanta el servidor de desarrollo
-npm run test          # Ejecuta tests unitarios e integración
+npm run dev
 
+## Este proyecto usa Vitest + @vue/test-utils para pruebas unitarias.
+
+```bash
+npm run test
