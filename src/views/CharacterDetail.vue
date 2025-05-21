@@ -24,6 +24,7 @@
       </div>
     </div>
 
+    <p v-else-if="error" class="text-red-600 font-semibold">{{ error }}</p>
     <p v-else class="text-gray-500">No se encontró información del personaje.</p>
   </div>
 </template>

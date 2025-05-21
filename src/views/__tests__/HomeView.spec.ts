@@ -101,4 +101,45 @@ describe('HomeView.vue', () => {
         const { loadList } = await createWrapper()
         expect(loadList).toHaveBeenCalled()
     })
+
+    it('shows a message error if there is a problem charging characters', async () => {
+        const { wrapper } = await createWrapper({ error: 'No se pudo cargar' })
+        await nextTick()
+        expect(wrapper.text()).toContain('No se pudo cargar')
+    })
+
+    it('calls nextPage and changes the route', async () => {
+        const router = createRouter({
+            history: createMemoryHistory(),
+            routes,
+        })
+
+        router.push({ path: '/', query: { page: '1' } })
+        await router.isReady()
+
+        const wrapper = mount(HomeView, {
+            global: {
+            plugins: [
+                router,
+                createTestingPinia({
+                createSpy: vi.fn,
+                initialState: {
+                    characters: {
+                    list: [],
+                    loading: false,
+                    error: null,
+                    totalPages: 2,
+                    },
+                },
+                stubActions: false,
+                }),
+            ],
+            },
+        })
+
+        const nextButton = wrapper.find('button:last-of-type')
+        await nextButton.trigger('click')
+
+        expect(router.currentRoute.value.query.page).toBe('1')
+    })
 })

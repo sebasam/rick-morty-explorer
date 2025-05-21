@@ -4,6 +4,8 @@
 
     <LoadingSpinner v-if="loading" />
 
+    <p v-if="!loading && error" class="text-red-600 mb-4">{{ error }}</p>
+
     <div
       v-if="!loading && !error"
       class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 overflow-y-auto flex-grow"
@@ -58,13 +60,16 @@
 
   const page = ref(Number(route.query.page) || 1)
 
-  watch(() => route.query.page, (newPage) => {
-    const p = Number(newPage) || 1
-    if (p !== page.value) {
-      page.value = p
-      store.loadList(p)
-    }
-  })
+  watch(
+    () => route.query.page,
+    (newPage) => {
+      const p = Number(newPage) || 1
+      if (p !== page.value) {
+        page.value = p
+        store.loadList(p)
+      }
+    },
+  )
 
   onMounted(() => {
     store.loadList(page.value)
