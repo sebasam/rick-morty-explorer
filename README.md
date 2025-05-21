@@ -30,24 +30,6 @@ Explorar personajes del universo de Rick & Morty con una experiencia fluida, res
 
 ---
 
-## 📂 Estructura del proyecto
-
-src/
-├── components/
-│ ├── CharacterCard.vue # Tarjeta individual de personaje
-│ └── CharacterDetail.vue # Vista detallada del personaje
-├── views/
-│ └── HomeView.vue # Vista principal (lista personajes)
-├── router/
-│ └── index.ts # Rutas SPA
-├── stores/
-│ └── characters.ts # Pinia Store (API y estados)
-├── App.vue # Componente raíz
-└── main.ts # Configuración principal
-
-
----
-
 ## 🧠 Decisiones técnicas
 
 - **Pinia** fue elegido por su simplicidad y compatibilidad nativa con Vue 3.
