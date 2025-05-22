@@ -1,5 +1,6 @@
 import type { Character } from '../types/character'
 
+
 const BASE_URL = import.meta.env.VITE_API_URL
 
 async function request<T>(endpoint: string): Promise<T> {
