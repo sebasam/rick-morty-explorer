@@ -4,6 +4,13 @@ Rick & Morty Explorer es una aplicación frontend construida con **Vue 3**, **Ty
 
 ---
 
+## 🔗 Enlace en producción
+La aplicación está desplegada en Netlify y puede accederse desde aquí:
+
+➡️ https://rickandmortytv.netlify.app/
+
+---
+
 ## 🎯 Objetivo
 
 Explorar personajes del universo de Rick & Morty con una experiencia fluida, responsive y moderna:
@@ -70,6 +77,14 @@ Explorar personajes del universo de Rick & Morty con una experiencia fluida, res
 git clone https://github.com/sebasam/rick-morty-explorer.git
 cd rick-morty-explorer
 npm install
+```
+2. ⚙️ Variables de entorno
+Crea un archivo .env en la raíz del proyecto con el siguiente contenido:
+VITE_API_URL=https://rickandmortyapi.com/api
+
+3. Ejecuta el siguiente comando:
+
+```bash
 npm run dev
 ```
 
